@@ -19,6 +19,7 @@ else
     gcloud data-catalog taxonomies import "$FILE_NAME.$LOCATION_SOURCE.yaml" --location="$LOCATION_TARGET" > "$FILE_NAME.$LOCATION_TARGET.yaml"
 
     echo "Replicated from $LOCATION_SOURCE to $LOCATION_TARGET, review file $FILE_NAME.$LOCATION_TARGET.yaml for details"
+    echo "Beware you'll need replicate access control enforcements, since this won't be replicated"
 done
 fi
 
