@@ -38,7 +38,7 @@ def hello_http(request):
     if step_type == "GET_TOKEN":
         sql_query = f"""
             BEGIN TRANSACTION;
-                select token FROM {dataset}.{table_control} ORDER BY `datetime` DESC;
+                SELECT token FROM {dataset}.{table_control} ORDER BY `datetime` DESC LIMIT 1;
             COMMIT TRANSACTION;
         """
         token_data = run_bq_query(sql_query)
