@@ -7,7 +7,7 @@ This sample code allow you to create an ingestion mechanism using Workflows, Clo
 
 **Sample IAM Roles provided here are for demonstration purposes only must be adjust to comply with least-privilege best practices.**
 
-![img](api-ingest.png)
+![img](api-ingest.drawio.png)
 
 * Create BigQuery table for storing the data. Replace YOUR_DATASET_NAME
 ````sql
