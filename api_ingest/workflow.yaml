@@ -1,0 +1,41 @@
+# This is a sample workflow to test or replace with your source code.
+# @lgbaeza June 2024
+# Replace YOUR_REGION with your own region, example: us-central1
+# Replace YOUR_PROJECT_ID with your own project ID
+# Replace YOUR_FUNCTION_NAME with your own Clloud Function name
+main:
+    params: [input]
+    steps:
+        - get_api_status:
+            call: http.post
+            args:
+                url: https://YOUR_REGION-YOUR_PROJECT_ID.cloudfunctions.net/YOUR_FUNCTION_NAME
+                body:
+                    step_type: GET_TOKEN
+                auth:
+                    type: OIDC
+            result: token_response
+        - get_api_data:
+            call: http.post
+            args:
+                url: https://YOUR_REGION-YOUR_PROJECT_ID.cloudfunctions.net/YOUR_FUNCTION_NAME
+                body:
+                    step_type: GET_DATA
+                    curr_token: ${token_response.body}
+                auth:
+                    type: OIDC
+            result: data_response
+        - save_api_status:
+            call: http.post
+            args:
+                url: https://YOUR_REGION-YOUR_PROJECT_ID.cloudfunctions.net/YOUR_FUNCTION_NAME
+                body:
+                    step_type: SAVE_STATUS
+                    new_token: '${json.decode(data_response.body).new_token}'
+                    records: '${json.decode(data_response.body).records}'
+                    datetime_col: '${json.decode(data_response.body).datetime_col}'
+                auth:
+                    type: OIDC
+            result: save_response
+        - finish:
+            return: ${save_response.body}
