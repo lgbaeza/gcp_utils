@@ -37,9 +37,7 @@ def hello_http(request):
     # Get current status
     if step_type == "GET_TOKEN":
         sql_query = f"""
-            BEGIN TRANSACTION;
                 SELECT token FROM {dataset}.{table_control} ORDER BY `datetime` DESC LIMIT 1;
-            COMMIT TRANSACTION;
         """
         token_data = run_bq_query(sql_query)
         curr_token = 1 if token_data == [] else int(token_data[0]["token"])
@@ -66,10 +64,8 @@ def hello_http(request):
         records = request_args.get("records")
         datetime_col = request_args.get("datetime_col")
         sql_query = f"""
-            BEGIN TRANSACTION;
                 INSERT INTO {dataset}.{table_control} (`datetime`, `token`, `records`) 
                     VALUES ('{datetime_col}', '{new_token}', '{records}');
-            COMMIT TRANSACTION;
                 """
         run_bq_query(sql_query)
 
