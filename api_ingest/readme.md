@@ -1,6 +1,9 @@
 # Paginated API data ingestion into BigQuery
 
-This sample code allow you to create an ingestion mechanism using Workflows, Cloud Functions and an auxiliary control table in BigQuery, to continuosly ingest data from a paginated API.
+This sample code allow you to create an ingestion mechanism using Workflows, Cloud Functions and an auxiliary control table in BigQuery, to continuosly ingest data from a paginated API. The workflow will invoke the same sample function passing a parameter specifying which step should run: 
+1. Get current token from BQ control table
+2. Retrieve and save the data from API using the current token
+3. Save the new toke acquired from the API
 
 **Sample IAM Roles provided here are for demonstration purposes only must be adjust to comply with least-privilege best practices.**
 
