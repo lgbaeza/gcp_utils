@@ -36,7 +36,11 @@ def hello_http(request):
 
     # Get current status
     if step_type == "GET_TOKEN":
-        sql_query = f"select token from {dataset}.{table_control} order by `datetime` desc;"
+        sql_query = f"""
+            BEGIN TRANSACTION;
+                select token FROM {dataset}.{table_control} ORDER BY `datetime` DESC;
+            COMMIT TRANSACTION;
+        """
         token_data = run_bq_query(sql_query)
         curr_token = 1 if token_data == [] else int(token_data[0]["token"])
         
@@ -47,7 +51,7 @@ def hello_http(request):
         curr_token = request_args.get("curr_token")
         new_token, data = make_request_api(curr_token)
 
-        sql_query = f"INSERT INTO {dataset}.{table_data} (a, b, c) values {data}"
+        sql_query = f"INSERT INTO {dataset}.{table_data} (a, b, c) VALUES {data}"
         run_bq_query(sql_query)
 
         return json.dumps({
@@ -61,7 +65,12 @@ def hello_http(request):
         new_token = request_args.get("new_token")
         records = request_args.get("records")
         datetime_col = request_args.get("datetime_col")
-        sql_query = f"INSERT INTO {dataset}.{table_control} (`datetime`, `token`, `records`) values ('{datetime_col}', '{new_token}', '{records}')"
+        sql_query = f"""
+            BEGIN TRANSACTION;
+                INSERT INTO {dataset}.{table_control} (`datetime`, `token`, `records`) 
+                    VALUES ('{datetime_col}', '{new_token}', '{records}');
+            COMMIT TRANSACTION;
+                """
         run_bq_query(sql_query)
 
         return f'{records} records processed.'
