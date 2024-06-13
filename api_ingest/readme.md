@@ -41,3 +41,4 @@ CREATE TABLE `YOUR_DATASET_NAME.api_control`
   * To run every minute use the cron expression * * * * *
   * To run every hour at 0 minutes, use the cron expression 0 * * * *
   * Assign a Service account with permissions to invoke the workflow (e.g. roles/workflows.invoker)
+  * Be careful with the schedule frequency and the time your ingestion logics takes to complete. 
