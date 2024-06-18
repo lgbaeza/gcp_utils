@@ -1,4 +1,5 @@
 -- Retrieve the DDL for a table or view
+-- Luis Gerardo Baeza, 18 Jun 2024
 SELECT
  ddl
 FROM
