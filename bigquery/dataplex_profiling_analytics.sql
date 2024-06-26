@@ -1,3 +1,5 @@
+-- Luis Gerardo Baeza
+
 -- history of column profile
 CREATE VIEW `dataplex_scan_results.vw_profiling_column_history` AS 
     SELECT 
@@ -26,42 +28,43 @@ CREATE VIEW `dataplex_scan_results.vw_profiling_column_history` AS
     FROM `dataplex_scan_results.profiling`;
 
 -- current snapshot of column profile
-SELECT
-    data_profile_job_id,
-        job_end_time,
-        data_source.dataplex_lake_id,
-        data_source.dataplex_zone_id,
-        data_source.dataset_id,
-        data_source.table_project_id,
-        column_name,
-        column_type,
-        data_profile_job_configuration.sampling_percent,
-
-        percent_null, 
-        percent_unique, 
-        min_string_length, 
-        max_string_length, 
-        average_string_length,
-
-        min_value,
-        max_value,
-        average_value,
-
-        standard_deviation, 
-        quartile_lower,
-        quartile_median, 
-        quartile_upper
-  FROM
-    `dataplex_scan_results.profiling` AS t
-  WHERE t.data_profile_job_id = (
+CREATE VIEW `dataplex_scan_results.vw_profiling_column_snapshot` AS 
     SELECT
-        data_profile_job_id
-      FROM
-        `dataplex_scan_results.profiling`
-      ORDER BY
-        job_end_time DESC
-      LIMIT 1
-  )
+        data_profile_job_id,
+            job_end_time,
+            data_source.dataplex_lake_id,
+            data_source.dataplex_zone_id,
+            data_source.dataset_id,
+            data_source.table_project_id,
+            column_name,
+            column_type,
+            data_profile_job_configuration.sampling_percent,
+
+            percent_null, 
+            percent_unique, 
+            min_string_length, 
+            max_string_length, 
+            average_string_length,
+
+            min_value,
+            max_value,
+            average_value,
+
+            standard_deviation, 
+            quartile_lower,
+            quartile_median, 
+            quartile_upper
+    FROM
+        `dataplex_scan_results.profiling` AS t
+    WHERE t.data_profile_job_id = (
+        SELECT
+            data_profile_job_id
+        FROM
+            `dataplex_scan_results.profiling`
+        ORDER BY
+            job_end_time DESC
+        LIMIT 1
+    )
 
 
 
