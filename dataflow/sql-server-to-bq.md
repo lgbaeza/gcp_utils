@@ -1,6 +1,8 @@
 # Dataflow SQL Server to BigQuery
 https://cloud.google.com/dataflow/docs/guides/templates/provided/sqlserver-to-bigquery
 
+![flow](https://github.com/lgbaeza/gcp_utils/blob/main/dataflow/SQLSERVER-TO-BQ.png)
+
 1. Create a Cloud SQL database within a VPC of yours
 2. Ensure connectivity is setup: routing, firewall
 3. Ensure APIs are enabled
@@ -9,7 +11,7 @@ https://cloud.google.com/dataflow/docs/guides/templates/provided/sqlserver-to-bi
    * PROJECT_NUMBER-compute@developer.gserviceaccount.com - [Worker service account](https://cloud.google.com/dataflow/docs/concepts/security-and-permissions#worker-service-account)
 5. Ensure Permissions for GCS, BQ Job User, and BQ Data Editor are in order for Worker Service Account Dataflow service account
    * PROJECT_NUMBER-compute@developer.gserviceaccount.com - [Worker service account](https://cloud.google.com/dataflow/docs/concepts/security-and-permissions#worker-service-account)
-6. Create SQL Server source table according to [sample](/lgbaeza/mycloudstuff/blob/main/db/sqlserver_sample_transactions.sql)
+6. Create SQL Server source table according to [sample]([/lgbaeza/mycloudstuff/blob/main/db/sqlserver_sample_transactions.sql](https://github.com/lgbaeza/mycloudstuff/blob/main/db/sqlserver_sample_transactions.sql))
 7. Create BQ Dataset erp_sqlserver and table transactions:
 ````sql
 -- ### Create equivalent BQ target Table
