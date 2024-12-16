@@ -9,15 +9,15 @@ export IMAGE=gcr.io/$PROJECT/samples/dataflow/slim:1
 # Build the image
 gcloud builds submit .  --tag=$IMAGE
 ```
-* Submit the job. 
-    * To run locally: runner=DirectRunner
-    * To run in Dataflow runner=DataflowRunner
 
 * upload the sample file to your bucket
 ```sh
 gsutil cp kinlear_short.txt "gs://$BUCKET/dataflow_samples/"
 ```
 
+* Submit the job: 
+    * To run locally: runner=DirectRunner
+    * To run in Dataflow runner=DataflowRunner
 ```sh
 export RUNNER=DataflowRunner
 
