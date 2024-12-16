@@ -1,5 +1,18 @@
+# Run a dataflow pipeline with custom container image
 
-* build the image using cloudbuild
+You can fild a list of provided images for Dataflow
+
+https://github.com/GoogleCloudPlatform/python-docs-samples/tree/main/dataflow/custom-containers
+
+### 1. Edit docker_image/Dockerfile with your runtime needs
+
+### 2. Authenticate
+
+```sh
+gcloud auth application-default login
+```
+
+### 3. build the image using cloudbuild
 ```sh
 cd docker_image
 export BUCKET="YOUR_BUCKET"
@@ -10,12 +23,11 @@ export IMAGE=gcr.io/$PROJECT/samples/dataflow/slim:1
 gcloud builds submit .  --tag=$IMAGE
 ```
 
-* upload the sample file to your bucket
+### 4. Upload the sample file to your bucket
 ```sh
 gsutil cp kinlear_short.txt "gs://$BUCKET/dataflow_samples/"
 ```
-
-* Submit the job: 
+### 5. Submit the job: 
     * To run locally: runner=DirectRunner
     * To run in Dataflow runner=DataflowRunner
 ```sh
