@@ -1,8 +1,8 @@
 # Run a dataflow pipeline with custom container image
 
-You can fild a list of provided images for Dataflow
-
-https://github.com/GoogleCloudPlatform/python-docs-samples/tree/main/dataflow/custom-containers
+Official resources:
+* [Use custom containers in Dataflow Documentation](https://cloud.google.com/dataflow/docs/guides/using-custom-containers)
+* [List of sample custom container images for Dataflow](https://github.com/GoogleCloudPlatform/python-docs-samples/tree/main/dataflow/custom-containers)
 
 ### 1. Edit docker_image/Dockerfile with your runtime needs
 
