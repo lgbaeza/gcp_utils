@@ -2,6 +2,9 @@
 
 How to extract relevant information easily from audios using BigQuery [AI.GENERATE_TABLE](https://cloud.google.com/bigquery/docs/reference/standard-sql/bigqueryml-syntax-generate-table?hl=es-419) SQL function. Sample created from [Documentation](https://cloud.google.com/bigquery/docs/transcribe?hl=es-419)
 
+## 0. Upload audios to Cloud Storage
+![bqml_audios](bqml_objects.png)
+
 ## 1. Create BigQuery connection to Vertex
 [Documentation](https://cloud.google.com/bigquery/docs/remote-functions#create_a_connection) to create a connection to Vertex and Cloud Storage in BigQueryML. Also, provide necessary permissions.
 
@@ -64,6 +67,7 @@ AI.GENERATE_TABLE(
 
 # 4. View insights
 Query the table created to view the insights. The output also includes metadata from BigQuery Job with the token utilization count.
+![bqml_result](bqml_result.png)
 ````sql
 Select * from objects.audio_insights;
 ````
