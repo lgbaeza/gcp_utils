@@ -17,4 +17,4 @@ Based on our pipeline design, here is the flow of data:
 
 ![bq_cont_queries.png](bq_cont_queries.png)
 
-Refer to the [BigQuery Colab Notebook](bq_cont_queries.ipynb) for implementation details
+Refer to the [BigQuery Colab Notebook](bq_continuous_tutorial.ipynb) for implementation details
